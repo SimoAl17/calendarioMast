@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasio</title>
+    <style>
+        .button{
+            display: flex;
+            clear: both;
+            border: solid 1px;
+        }
+        input{
+            display: flex;
+            clear: both;
+            border: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="result"></div>
+    <div id="giorno">
+        <input class="giornoID" type="text" value="1 Aprile" readonly>
+        <input class="testo" type="text" value="">
+        <input class="testo" type="text" value="">
+        <input class="testo" type="text" value="">
+        <input class="testo" type="text" value="">
+        <input class="testo" type="text" value="">
+    </div>
+    <input class="button" type="button" value="Scrivi" onclick="scrivi()">
+    <script>
+        function scrivi() {
+            let resultElement = document.getElementById("result");
+            resultElement.innerHTML = "";
+            let paperina = document.getElementsByClassName("testo");
+            for (let i = 0; i < paperina.length; i++) {
+                let paperino = document.createTextNode(paperina[i].value);
+                resultElement.append(paperino);
+            }
+        }
+    </script>
+</body>
+</html>
