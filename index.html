@@ -11,7 +11,7 @@
             clear: both;
             border: solid 1px;
         }
-        input{
+        input:read-only{
             display: flex;
             clear: both;
             border: hidden;
@@ -20,19 +20,76 @@
 </head>
 <body>
     <div id="result"></div>
-    <div id="giorno">
-        <input class="giornoID" type="text" value="1 Aprile" readonly>
-        <input class="testo" type="text" value="">
-        <input class="testo" type="text" value="">
-        <input class="testo" type="text" value="">
-        <input class="testo" type="text" value="">
-        <input class="testo" type="text" value="">
-    </div>
+    <select name="mese" id="selectMese" onchange="createForm(this.value)">
+        <option value=""></option>
+       <option value="Gennaio">Gennaio</option>
+       <option value="Febbraio">Febbraio</option>
+       <option value="Marzo">Marzo</option>
+       <option value="Aprile">Aprile</option>
+       <option value="Maggio">Maggio</option>
+       <option value="Giugno">Giugno</option>
+       <option value="Luglio">Luglio</option>
+       <option value="Agosto">Agosto</option>
+       <option value="Settembre">Settembre</option>
+       <option value="Ottobre">Ottobre</option>
+       <option value="Novembre">Novembre</option>
+       <option value="Dicembre">Dicembre</option>
+    </select>
+    <div id="days"></div>
+    <p id="meseSel" hidden></p>
+    <p id="mesePrev" hidden></p>
+
     <input class="button" type="button" value="Scrivi" onclick="scrivi()">
     <script>
+        function createForm(mese) {
+            let meseSel = document.getElementById("meseSel");
+            meseSel.innerHTML = mese;
+            let mesePrev = document.getElementById("mesePrev");
+            if (mese == "Gennaio") {
+                mesePrev.innerHTML = "Dicembre";
+            } else {
+                const calendario = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+                let indiceMese = calendario.indexOf(mese);
+                mesePrev.innerHTML = calendario[indiceMese-1];
+            }
+            let conteniGiorni = document.getElementById("days");
+            while (conteniGiorni.firstChild) {
+                conteniGiorni.removeChild(conteniGiorni.lastChild);
+            }
+
+            for (let i = 1; i < 32; i++) {
+                let conteniGiorno = document.createElement("div");
+                conteniGiorno.setAttribute("class", "giorno");
+
+                let inputID = document.createElement("input");
+                inputID.setAttribute("class", "giornoID");
+                inputID.setAttribute("type", "text");
+                inputID.setAttribute("value", i);
+                inputID.readOnly = true;
+                conteniGiorno.appendChild(inputID);
+                for (let z = 0; z < 5; z++) {
+                    let inputID = document.createElement("input");
+                    inputID.setAttribute("class", "testo");
+                    inputID.setAttribute("type", "text");
+                    conteniGiorno.appendChild(inputID);
+                }
+
+                
+                conteniGiorni.appendChild(conteniGiorno);
+            }
+        }
+        
+        
         function scrivi() {
             let resultElement = document.getElementById("result");
             resultElement.innerHTML = "";
+            
+            let conteniGiorni = document.getElementById("days");
+            collecGiorni = conteniGiorni.children;
+            for (let i = 0; i < collecGiorni.length; i++) {
+                
+            }
+            
             let paperina = document.getElementsByClassName("testo");
             for (let i = 0; i < paperina.length; i++) {
                 let paperino = document.createTextNode(paperina[i].value);
