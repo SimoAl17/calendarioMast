@@ -15,6 +15,7 @@
             display: flex;
             clear: both;
             border: hidden;
+            user-select: none;
         }
     </style>
 </head>
@@ -66,7 +67,6 @@
                 inputID.setAttribute("class", "giornoID");
                 inputID.setAttribute("type", "text");
                 inputID.setAttribute("value", i);
-                inputID.setAttribute("tabindex", "-1");
                 inputID.readOnly = true;
                 conteniGiorno.appendChild(inputID);
                 for (let z = 0; z < 5; z++) {
@@ -86,7 +86,6 @@
                 inputID.setAttribute("class", "giornoID");
                 inputID.setAttribute("type", "text");
                 inputID.setAttribute("value", i);
-                inputID.setAttribute("tabindex", "-1");
                 inputID.readOnly = true;
                 conteniGiorno.appendChild(inputID);
                 for (let z = 0; z < 5; z++) {
